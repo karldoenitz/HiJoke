@@ -6,4 +6,5 @@
 
 DatabaseOperator::DatabaseOperator() {
     this->userManager = std::make_shared<UserManager>();
+    this->jokeManager = std::make_shared<JokeManager>();
 }

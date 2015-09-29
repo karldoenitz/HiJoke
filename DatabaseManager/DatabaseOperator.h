@@ -6,11 +6,13 @@
 #define TESTCPPDB_DATABASEOPERATOR_H
 
 #include "user/manager/UserManager.h"
+#include "joke/manager/JokeManager.h"
 
 class DatabaseOperator {
 public:
     DatabaseOperator();
     std::shared_ptr<UserManager> userManager;
+    std::shared_ptr<JokeManager> jokeManager;
 };
 
 
