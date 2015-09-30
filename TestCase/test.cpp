@@ -32,6 +32,10 @@ void test_joke(){
     cout << "---------------------------------------------------------" << endl;
 }
 
+void test_comment(){
+
+}
+
 int main() {
 //    test_user();
     test_joke();
