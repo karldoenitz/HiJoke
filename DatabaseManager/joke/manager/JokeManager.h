@@ -16,6 +16,7 @@ private:
 public:
     JokeManager();
     std::shared_ptr<std::vector<std::shared_ptr<Joke>>> get_jokes(int begin_id, int end_id);
+    std::shared_ptr<Joke> get_joke(int id);
 };
 
 

@@ -27,3 +27,22 @@ std::shared_ptr<std::vector<std::shared_ptr<Joke>>> JokeManager::get_jokes(int b
     }
     return joke_vector;
 }
+
+std::shared_ptr<Joke> JokeManager::get_joke(int id) {
+    cppdb::result res;
+    res = this->sql_session << "SELECT * from joke where id =?" << id;
+    std::shared_ptr<Joke> joke(new Joke());
+    while (res.next()) {
+        std::string title;
+        std::string content;
+        res >> id >> title >> content;
+        joke->set_joke_id(id);
+        joke->set_title(title);
+        joke->set_content(content);
+        return joke;
+    }
+    joke->set_joke_id(0);
+    joke->set_title("");
+    joke->set_content("");
+    return joke;
+}
