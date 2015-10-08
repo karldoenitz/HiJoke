@@ -19,7 +19,7 @@ private:
 public:
     UserManager();
     bool save_user(std::shared_ptr<User> user);
-    std::shared_ptr<User> get_user(std::shared_ptr<User> user, bool is_by_code);
+    std::shared_ptr<User> get_user(std::shared_ptr<User> user, int condition);
 };
 
 

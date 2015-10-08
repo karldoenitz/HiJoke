@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include "../DatabaseManager/DatabaseOperator.h"
+#include "../Utils/Utils.h"
 
 using namespace std;
 
@@ -36,8 +37,14 @@ void test_comment(){
 
 }
 
+void test_uuid(){
+    Utils utils;
+    cout << utils.uuid() << endl;
+}
+
 int main() {
 //    test_user();
-    test_joke();
+//    test_joke();
+    test_uuid();
     return 0;
 }

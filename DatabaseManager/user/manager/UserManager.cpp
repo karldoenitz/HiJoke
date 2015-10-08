@@ -22,20 +22,23 @@ bool UserManager::save_user(std::shared_ptr<User> user) {
     }
 }
 
-std::shared_ptr<User> UserManager::get_user(std::shared_ptr<User> user, bool is_by_code) {
+std::shared_ptr<User> UserManager::get_user(std::shared_ptr<User> user, int condition) {
     std::shared_ptr<User>user_from_db(new User());
     cppdb::result res;
-    if (is_by_code){
+    if (condition==0){
         res = this->sql_session << "SELECT * from user where usercode=?" << user->get_usercode();
+    } else if(condition==1){
+        res = this->sql_session << "SELECT * from user where username=?" << user->get_username();
     } else{
         res = this->sql_session << "SELECT * from user where username=? and password=?" << user->get_username() << user->get_password();
     }
     while (res.next()) {
+        int id;
         int status;
         std::string username;
         std::string password;
         std::string usercode;
-        res >> username >> password >> usercode >> status;
+        res >> id >> username >> password >> usercode >> status;
         user_from_db->set_username(username);
         user_from_db->set_password(password);
         user_from_db->set_usercode(usercode);
