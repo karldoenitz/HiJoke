@@ -13,16 +13,18 @@ JokeManager::JokeManager() {
 std::shared_ptr<std::vector<std::shared_ptr<Joke>>> JokeManager::get_jokes(int begin_id, int end_id) {
     std::shared_ptr<std::vector<std::shared_ptr<Joke>>>joke_vector(new std::vector<std::shared_ptr<Joke>>);
     cppdb::result res;
-    res = this->sql_session << "SELECT * from joke where id >=? and id <= ?" << begin_id << end_id;
+    res = this->sql_session << "SELECT * FROM (select * from joke where status=1) order by id desc limit ?, ?" << begin_id << end_id;
     while (res.next()) {
         std::shared_ptr<Joke>joke(new Joke());
         int id;
         std::string title;
         std::string content;
-        res >> id >> title >> content;
+        int status;
+        res >> id >> title >> content >> status;
         joke->set_joke_id(id);
         joke->set_title(title);
         joke->set_content(content);
+        joke->set_status(status);
         joke_vector->push_back(std::move(joke));
     }
     return joke_vector;
@@ -35,14 +37,28 @@ std::shared_ptr<Joke> JokeManager::get_joke(int id) {
     while (res.next()) {
         std::string title;
         std::string content;
-        res >> id >> title >> content;
+        int status;
+        res >> id >> title >> content >> status;
         joke->set_joke_id(id);
         joke->set_title(title);
         joke->set_content(content);
+        joke->set_status(status);
         return joke;
     }
     joke->set_joke_id(0);
     joke->set_title("");
     joke->set_content("");
     return joke;
+}
+
+bool JokeManager::write_joke(std::shared_ptr<Joke> joke) {
+    try {
+        cppdb::statement stat;
+        stat = this->sql_session << "INSERT INTO joke (title, content, status) values (?, ?, 2)" << joke->get_title() << joke->get_content();
+        stat.exec();
+        return true;
+    }catch (std::exception const &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+        return false;
+    }
 }

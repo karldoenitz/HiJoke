@@ -22,6 +22,10 @@ void Joke::set_title(std::string title) {
     this->title = title;
 }
 
+void Joke::set_status(int status) {
+    this->status = status;
+}
+
 int Joke::get_joke_id() {
     return this->id;
 }
@@ -32,4 +36,8 @@ std::string Joke::get_title() {
 
 std::string Joke::get_content() {
     return this->content;
+}
+
+int Joke::get_status() {
+    return this->status;
 }

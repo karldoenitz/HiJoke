@@ -25,6 +25,6 @@ void LoginHandler::main(std::string url) {
     session().load();
     session()[usercode] = true;
     session().save();
-    delete login;
     response().out() << json_result;
+    delete login;
 }
