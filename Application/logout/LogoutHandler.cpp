@@ -9,7 +9,7 @@ void LogoutHandler::main(std::string url) {
     cookie logout_cookie = request().cookie_by_name("usercode");
     std::string usercode = logout_cookie.value();
     session().load();
-    session()[usercode] = false;
+    session()[usercode] = "false";
     session().save();
     json_result["result"] = "logout success";
     response().out() << json_result;

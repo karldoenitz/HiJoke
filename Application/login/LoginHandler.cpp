@@ -19,12 +19,17 @@ void LoginHandler::main(std::string url) {
     Login *login = new Login();
     std::string usercode = login->user_login(username, password);
     cppcms::json::value json_result;
-    json_result["result"] = "login success";
-    cookie login_cookie("usercode", usercode, 84600, "/");
-    response().set_cookie(login_cookie);
-    session().load();
-    session()[usercode] = true;
-    session().save();
+    if (usercode.size() > 0){
+        json_result["result"] = "login success";
+        cookie login_cookie("usercode", usercode, 84600, "/");
+        response().set_cookie(login_cookie);
+        session().load();
+        session()[usercode] = "true";
+        session().save();
+    }
+    else {
+        json_result["result"] = "login failed";
+    }
     response().out() << json_result;
     delete login;
 }

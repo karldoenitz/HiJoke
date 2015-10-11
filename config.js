@@ -4,7 +4,7 @@
         "port" : 8080,
     },
     "http" : {
-        "script_names" : ["/register", "/login", "/logout"]
+        "script_names" : ["/register", "/login", "/logout", "/jokes", "/write-joke"]
     },
     "session" : {
         "expire" : "renew",
