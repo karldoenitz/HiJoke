@@ -21,5 +21,5 @@ set(SOURCE_FILES
         Application/register/RegisterHandler.cpp
         Application/register/RegisterHandler.h
         Utils/Utils.cpp
-        Utils/Utils.h Application/login/LoginHandler.cpp Application/login/LoginHandler.h Application/logout/LogoutHandler.cpp Application/logout/LogoutHandler.h Application/joke/JokeHandler.cpp Application/joke/JokeHandler.h)
+        Utils/Utils.h Application/login/LoginHandler.cpp Application/login/LoginHandler.h Application/logout/LogoutHandler.cpp Application/logout/LogoutHandler.h Application/joke/JokeHandler.cpp Application/joke/JokeHandler.h Application/comment/CommentHandler.cpp Application/comment/CommentHandler.h)
 add_executable(HiJoke ${SOURCE_FILES})

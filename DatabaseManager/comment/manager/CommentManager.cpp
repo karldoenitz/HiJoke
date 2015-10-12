@@ -22,10 +22,10 @@ bool CommentManager::write_comment(int joke_id, std::string usercode, std::strin
 }
 
 std::shared_ptr<std::vector<std::shared_ptr<Comment>>> CommentManager::get_comment_vector(int joke_id) {
-    std::shared_ptr<std::vector<std::shared_ptr<Comment>>> comment_vector;
+    std::shared_ptr<std::vector<std::shared_ptr<Comment>>>comment_vector(new std::vector<std::shared_ptr<Comment>>());
     cppdb::result comment_res;
     cppdb::result joke_res;
-    comment_res = this->sql_session << "SELECT * FROM comment WHERE joke_id=?" << joke_id;
+    comment_res = this->sql_session << "select * from comment where joke_id=?" << joke_id;
     joke_res = this->sql_session << "select * from joke where id=?" << joke_id;
     std::shared_ptr<Joke>joke(new Joke());
     while (joke_res.next()){
@@ -43,11 +43,12 @@ std::shared_ptr<std::vector<std::shared_ptr<Comment>>> CommentManager::get_comme
         std::string usercode;
         std::string joke_comment;
         std::shared_ptr<UserManager>userManager(new UserManager());
-        comment_res >> comment_id >> usercode >> joke_comment;
+        comment_res >> comment_id >> joke_id >> usercode >> joke_comment;
         comment->set_joke(joke);
         std::shared_ptr<User>user(new User());
         user->set_usercode(usercode);
-        user = userManager->get_user(user, true);
+        user = userManager->get_user(user, 0);
+        comment->set_comment_id(comment_id);
         comment->set_user(user);
         comment->set_comment(joke_comment);
         comment_vector->push_back(std::move(comment));

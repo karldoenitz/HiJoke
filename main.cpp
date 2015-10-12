@@ -3,6 +3,7 @@
 #include "Application/login/LoginHandler.h"
 #include "Application/logout/LogoutHandler.h"
 #include "Application/joke/JokeHandler.h"
+#include "Application/comment/CommentHandler.h"
 
 using namespace std;
 
@@ -28,6 +29,10 @@ int main(int argc,char ** argv) {
         app.applications_pool().mount(
                 cppcms::applications_factory<WriteJokeHandler>(),
                 cppcms::mount_point("/write-joke")
+        );
+        app.applications_pool().mount(
+                cppcms::applications_factory<CommentHandler>(),
+                cppcms::mount_point("/get-comment")
         );
         app.run();
     }
