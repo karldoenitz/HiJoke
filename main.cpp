@@ -34,6 +34,10 @@ int main(int argc,char ** argv) {
                 cppcms::applications_factory<CommentHandler>(),
                 cppcms::mount_point("/get-comment")
         );
+        app.applications_pool().mount(
+                cppcms::applications_factory<WriteCommentHandler>(),
+                cppcms::mount_point("/write-comment")
+        );
         app.run();
     }
     catch (std::exception const &e){

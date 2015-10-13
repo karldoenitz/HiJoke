@@ -32,6 +32,35 @@ void CommentHandler::main(std::string url) {
     delete getComment;
 }
 
-void WriteCommentHandler::main(std::string url) {
+bool WriteComment::write_comment(int joke_id, std::string usercode, std::string comment) {
+    std::shared_ptr<DatabaseOperator>databaseOperator(new DatabaseOperator());
+    bool result = databaseOperator->commentManager->write_comment(joke_id, usercode, comment);
+    return result;
+}
 
+void WriteCommentHandler::main(std::string url) {
+    session().load();
+    cookie logout_cookie = request().cookie_by_name("usercode");
+    std::string usercode = logout_cookie.value();
+    cppcms::json::value json_error;
+    json_error["result"] = false;
+    json_error["reason"] = "user not login";
+    if (usercode.size() <= 0){
+        response().out() << json_error;
+        return;
+    }
+    std::string session_value = session()[usercode];
+    if (session_value == "false"){
+        response().out() << json_error;
+        return;
+    }
+    std::string joke = request().post("joke_id");
+    int joke_id = std::atoi(joke.c_str());
+    std::string comment = request().post("comment");
+    WriteComment *writeComment = new WriteComment();
+    bool result = writeComment->write_comment(joke_id, usercode, comment);
+    cppcms::json::value json_result;
+    json_result["result"] = result;
+    response().out() << json_result;
+    delete writeComment;
 }

@@ -18,8 +18,12 @@
 #include "../../DatabaseManager/DatabaseOperator.h"
 #include "../../Utils/Utils.h"
 
-class WriteComment {
+using namespace std;
+using namespace cppcms::http;
 
+class WriteComment {
+public:
+    bool write_comment(int joke_id, std::string usercode, std::string comment);
 };
 
 class WriteCommentHandler : public cppcms::application {
