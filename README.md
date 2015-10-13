@@ -10,8 +10,13 @@ compile the projection: run the command "./start.sh compile"
 run the projection: run the command "./start.sh run"
 
 ## documentation
-ABCD | EFGH | IGKL
------|------|----
-a    | b    | c
-d    | e    | f
-g    | h    | i
+uri            | method | params | summary
+---------------|--------|--------|--------
+/register      |  post  | c |
+/login         |  post  | f |
+/logout        |  post  | i |
+/jokes         |  get   |   |
+/write-joke    |  post  |   |
+/get-comment   |  get   |   |
+/write-comment |  post  |   |
+
