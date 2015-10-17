@@ -12,6 +12,7 @@
 #include "../../joke/bean/Joke.h"
 #include "../../user/bean/User.h"
 #include "../../user/manager/UserManager.h"
+#include "../../../settings.h"
 
 class CommentManager {
 private:

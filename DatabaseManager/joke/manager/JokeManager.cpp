@@ -6,7 +6,7 @@
 
 
 JokeManager::JokeManager() {
-    cppdb::session sql("sqlite3:db=database.sqlite");
+    cppdb::session sql(db_connection);
     this->sql_session = sql;
 }
 
@@ -61,4 +61,15 @@ bool JokeManager::write_joke(std::shared_ptr<Joke> joke) {
         std::cerr << "ERROR: " << e.what() << std::endl;
         return false;
     }
+}
+
+int JokeManager::get_joke_count(int status) {
+    cppdb::result res;
+    res = this->sql_session << "SELECT count(*) number from joke where status =?" << status;
+    while (res.next()) {
+        int number;
+        res >> number;
+        return number;
+    }
+    return 0;
 }

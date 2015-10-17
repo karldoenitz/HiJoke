@@ -28,6 +28,7 @@ void CommentHandler::main(std::string url) {
     std::string joke_id = request().get("joke_id");
     int id = std::atoi(joke_id.c_str());
     GetComment *getComment = new GetComment();
+    response().content_type("application/json; charset=\"utf-8\"");
     response().out() << getComment->get_comment(id);
     delete getComment;
 }
@@ -45,6 +46,7 @@ void WriteCommentHandler::main(std::string url) {
     cppcms::json::value json_error;
     json_error["result"] = false;
     json_error["reason"] = "user not login";
+    response().content_type("application/json; charset=\"utf-8\"");
     if (usercode.size() <= 0){
         response().out() << json_error;
         return;

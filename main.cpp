@@ -38,6 +38,18 @@ int main(int argc,char ** argv) {
                 cppcms::applications_factory<WriteCommentHandler>(),
                 cppcms::mount_point("/write-comment")
         );
+        app.applications_pool().mount(
+                cppcms::applications_factory<AdminLoginHandler>(),
+                cppcms::mount_point("/admin-login")
+        );
+        app.applications_pool().mount(
+                cppcms::applications_factory<AdminLoginView>(),
+                cppcms::mount_point("/admin-login-view")
+        );
+        app.applications_pool().mount(
+                cppcms::applications_factory<AdminView>(),
+                cppcms::mount_point("/admin-index")
+        );
         app.run();
     }
     catch (std::exception const &e){

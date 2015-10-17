@@ -12,5 +12,6 @@ void LogoutHandler::main(std::string url) {
     session()[usercode] = "false";
     session().save();
     json_result["result"] = "logout success";
+    response().content_type("application/json; charset=\"utf-8\"");
     response().out() << json_result;
 }

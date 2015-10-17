@@ -5,7 +5,7 @@
 #include "UserManager.h"
 
 UserManager::UserManager() {
-    cppdb::session sql("sqlite3:db=database.sqlite");
+    cppdb::session sql(db_connection);
     this->sql_session = sql;
 }
 
@@ -29,9 +29,31 @@ std::shared_ptr<User> UserManager::get_user(std::shared_ptr<User> user, int cond
         res = this->sql_session << "SELECT * from user where usercode=?" << user->get_usercode();
     } else if(condition==1){
         res = this->sql_session << "SELECT * from user where username=?" << user->get_username();
-    } else{
+    } else if(condition==2){
         res = this->sql_session << "SELECT * from user where username=? and password=?" << user->get_username() << user->get_password();
+    } else if(condition==3){
+        res = this->sql_session << "SELECT * from user where status=?" << user->get_status();
     }
+    while (res.next()) {
+        int id;
+        int status;
+        std::string username;
+        std::string password;
+        std::string usercode;
+        res >> id >> username >> password >> usercode >> status;
+        user_from_db->set_username(username);
+        user_from_db->set_password(password);
+        user_from_db->set_usercode(usercode);
+        user_from_db->set_status(status);
+        return user_from_db;
+    }
+    return user_from_db;
+}
+
+std::shared_ptr<User> UserManager::get_user(std::shared_ptr<User> user, int start_index, int length) {
+    std::shared_ptr<User>user_from_db(new User());
+    cppdb::result res;
+    res = this->sql_session << "SELECT * from user where status=? order by id desc limit ?, ?" << user->get_status() << start_index << length;
     while (res.next()) {
         int id;
         int status;

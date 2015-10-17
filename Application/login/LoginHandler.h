@@ -17,13 +17,14 @@
 #include <cppcms/http_response.h>
 #include <cppcms/http_cookie.h>
 #include "../../DatabaseManager/DatabaseOperator.h"
+#include "../../Templates/content.h"
 
 using namespace std;
 using namespace cppcms::http;
 
 class Login {
 public:
-    std::string user_login(std::string username, std::string password);
+    std::string user_login(std::string username, std::string password, int status);
 };
 
 class LoginHandler : public cppcms::application {
@@ -32,5 +33,22 @@ public:
     virtual void main(std::string url);
 };
 
+class AdminLoginHandler : public cppcms::application {
+public:
+    AdminLoginHandler(cppcms::service &srv) : cppcms::application(srv){};
+    virtual void main(std::string url);
+};
+
+class AdminLoginView : public cppcms::application {
+public:
+    AdminLoginView(cppcms::service &srv) : cppcms::application(srv){};
+    virtual void main(std::string url);
+};
+
+class AdminView : public cppcms::application {
+public:
+    AdminView(cppcms::service &srv) : cppcms::application(srv){};
+    virtual void main(std::string url);
+};
 
 #endif //HIJOKE_LOGINHANDLER_H

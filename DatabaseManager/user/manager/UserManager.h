@@ -12,6 +12,7 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/lexical_cast.hpp>
 #include "../bean/User.h"
+#include "../../../settings.h"
 
 class UserManager {
 private:
@@ -20,6 +21,7 @@ public:
     UserManager();
     bool save_user(std::shared_ptr<User> user);
     std::shared_ptr<User> get_user(std::shared_ptr<User> user, int condition);
+    std::shared_ptr<User> get_user(std::shared_ptr<User> user, int start_index, int length);
 };
 
 

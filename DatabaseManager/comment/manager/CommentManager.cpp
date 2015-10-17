@@ -5,7 +5,7 @@
 #include "CommentManager.h"
 
 CommentManager::CommentManager() {
-    cppdb::session sql("sqlite3:db=database.sqlite");
+    cppdb::session sql(db_connection);
     this->sql_session = sql;
 }
 

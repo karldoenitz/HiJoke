@@ -20,6 +20,7 @@ void WriteJokeHandler::main(std::string url) {
     cppcms::json::value json_error;
     json_error["result"] = false;
     json_error["reason"] = "user not login";
+    response().content_type("application/json; charset=\"utf-8\"");
     if (usercode.size() <= 0){
         response().out() << json_error;
         return;
@@ -42,13 +43,16 @@ void WriteJokeHandler::main(std::string url) {
 void JokeHandler::main(std::string url) {
     std::string start_index = request().get("start_index");
     std::string length = request().get("length");
+    std::string status = request().get("status");
+    int joke_status = status!=""?std::atoi(status.c_str()):1;
     int start = std::atoi(start_index.c_str());
     int end = std::atoi(length.c_str());
     DatabaseOperator *databaseOperator = new DatabaseOperator();
     std::shared_ptr<std::vector<std::shared_ptr<Joke>>> jokes = databaseOperator->jokeManager->get_jokes(start, end);
     cppcms::json::value json_result;
     unsigned long current_page_joke_number = jokes->size();
-    json_result["joke_counts"] = current_page_joke_number;
+    json_result["current_joke_counts"] = current_page_joke_number;
+    json_result["joke_counts"] = databaseOperator->jokeManager->get_joke_count(joke_status);
     for (int i = 0; i < current_page_joke_number; ++i) {
         cppcms::json::value json_joke;
         json_joke["id"] = jokes->at(i)->get_joke_id();
@@ -56,6 +60,7 @@ void JokeHandler::main(std::string url) {
         json_joke["content"] = jokes->at(i)->get_content();
         json_result["jokes"][i] = json_joke;
     }
+    response().content_type("application/json; charset=\"utf-8\"");
     response().out() << json_result;
     delete databaseOperator;
 }
