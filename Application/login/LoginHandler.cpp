@@ -67,6 +67,22 @@ void AdminLoginView::main(std::string url) {
 }
 
 void AdminView::main(std::string url) {
+    session().load();
+    cookie logout_cookie = request().cookie_by_name("usercode");
+    std::string usercode = logout_cookie.value();
+    if (usercode.size() <= 0){
+        content::message c;
+        c.static_host = static_file_path;
+        render("message",c);
+        return;
+    }
+    std::string session_value = session()[usercode];
+    if (session_value == "false"){
+        content::message c;
+        c.static_host = static_file_path;
+        render("message",c);
+        return;
+    }
     content::index c;
     c.static_host = static_file_path;
     render("index",c);

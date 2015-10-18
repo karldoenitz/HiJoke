@@ -9,9 +9,9 @@ cppcms::json::value GetComment::get_comment(int joke_id) {
     std::shared_ptr<DatabaseOperator>databaseOperator(new DatabaseOperator());
     std::shared_ptr<std::vector<std::shared_ptr<Comment>>> comment_vector = databaseOperator->commentManager->get_comment_vector(joke_id);
     cppcms::json::value joke_json;
-    joke_json["id"] = comment_vector->at(0)->get_joke()->get_joke_id();
-    joke_json["title"] = comment_vector->at(0)->get_joke()->get_title();
-    joke_json["content"] = comment_vector->at(0)->get_joke()->get_content();
+    joke_json["id"] = comment_vector->size()>0?comment_vector->at(0)->get_joke()->get_joke_id():0;
+    joke_json["title"] = comment_vector->size()>0?comment_vector->at(0)->get_joke()->get_title():"";
+    joke_json["content"] = comment_vector->size()>0?comment_vector->at(0)->get_joke()->get_content():"";
     comment_result["joke"] = joke_json;
     for (int i = 0; i < comment_vector->size(); ++i) {
         cppcms::json::value joke_comment;

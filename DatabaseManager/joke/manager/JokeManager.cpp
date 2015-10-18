@@ -10,10 +10,10 @@ JokeManager::JokeManager() {
     this->sql_session = sql;
 }
 
-std::shared_ptr<std::vector<std::shared_ptr<Joke>>> JokeManager::get_jokes(int begin_id, int end_id) {
+std::shared_ptr<std::vector<std::shared_ptr<Joke>>> JokeManager::get_jokes(int begin_id, int end_id, int joke_status) {
     std::shared_ptr<std::vector<std::shared_ptr<Joke>>>joke_vector(new std::vector<std::shared_ptr<Joke>>);
     cppdb::result res;
-    res = this->sql_session << "SELECT * FROM (select * from joke where status=1) order by id desc limit ?, ?" << begin_id << end_id;
+    res = this->sql_session << "SELECT * FROM (select * from joke where status=?) order by id desc limit ?, ?" << joke_status << begin_id << end_id;
     while (res.next()) {
         std::shared_ptr<Joke>joke(new Joke());
         int id;

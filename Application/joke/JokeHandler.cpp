@@ -48,11 +48,13 @@ void JokeHandler::main(std::string url) {
     int start = std::atoi(start_index.c_str());
     int end = std::atoi(length.c_str());
     DatabaseOperator *databaseOperator = new DatabaseOperator();
-    std::shared_ptr<std::vector<std::shared_ptr<Joke>>> jokes = databaseOperator->jokeManager->get_jokes(start, end);
+    std::shared_ptr<std::vector<std::shared_ptr<Joke>>> jokes = databaseOperator->jokeManager->get_jokes(start, end, joke_status);
     cppcms::json::value json_result;
     unsigned long current_page_joke_number = jokes->size();
     json_result["current_joke_counts"] = current_page_joke_number;
     json_result["joke_counts"] = databaseOperator->jokeManager->get_joke_count(joke_status);
+    json_result["status"] = joke_status;
+    json_result["current_page"] = start / end + 1;
     for (int i = 0; i < current_page_joke_number; ++i) {
         cppcms::json::value json_joke;
         json_joke["id"] = jokes->at(i)->get_joke_id();

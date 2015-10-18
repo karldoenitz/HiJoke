@@ -164,7 +164,7 @@ namespace my_skin {
 				"    <script src=\"";
 			#line 16 "index.tmpl"
 			out()<<cppcms::filters::escape(content.static_host);
-			#line 97 "index.tmpl"
+			#line 83 "index.tmpl"
 			out()<<"static/app-js/function.js\" type=\"text/javascript\"></script>\n"
 				"</head>\n"
 				"<body>\n"
@@ -194,8 +194,8 @@ namespace my_skin {
 				"                                笑话管理<span class=\"caret\"></span>\n"
 				"                            </a>\n"
 				"                            <ul class=\"dropdown-menu\" role=\"menu\">\n"
-				"                                <li><a href=\"#\" onclick=\"\">已通过审核笑话</a></li>\n"
-				"                                <li><a href=\"#\" onclick=\"\">未通过审核笑话</a></li>\n"
+				"                                <li><a href=\"#\" onclick=\"get_jokes(0, 10, 1)\">已通过审核笑话</a></li>\n"
+				"                                <li><a href=\"#\" onclick=\"get_jokes(0, 10, 2)\">未通过审核笑话</a></li>\n"
 				"                            </ul>\n"
 				"                        </li>\n"
 				"\n"
@@ -215,31 +215,17 @@ namespace my_skin {
 				"        </div>\n"
 				"    </div>\n"
 				"    <div class=\"container\">\n"
+				"        <div class=\"page-title\" id=\"page-title\">\n"
+				"        </div>\n"
 				"        <table id=\"show_result\" class=\"table table-striped table-hover\">\n"
 				"            <thead id=\"result_head\">\n"
-				"            <tr>\n"
-				"                <th>1</th>\n"
-				"                <th>2</th>\n"
-				"                <th>3</th>\n"
-				"                <th>4</th>\n"
-				"            </tr>\n"
 				"            </thead>\n"
 				"            <tbody id=\"result_body\">\n"
-				"            <tr>\n"
-				"                <td>2</td>\n"
-				"                <td>3</td>\n"
-				"                <td>4</td>\n"
-				"                <td>5</td>\n"
-				"            </tr>\n"
 				"            </tbody>\n"
 				"        </table>\n"
 				"        <div style=\"margin-left:auto;margin-right:auto;text-align:center;\">\n"
-				"            <ul class=\"pagination\">\n"
-				"                <li id=\"first_page\"><a href=\"/admin/monitor/system/page1/\" class=\"active\">第一页</a></li>\n"
-				"                <li id=\"pre_page\" class=\"disabled\"><a href=\"javascript:void(0);\">上一页</a></li>\n"
-				"                <li id=\"current_page\"><a href=\"#\">第1页</a></li>\n"
-				"                <li id=\"next_page\"><a href=\"/admin/monitor/system/page2/\">下一页</a></li>\n"
-				"                <li id=\"last_page\"><a href=\"/admin/monitor/system/page13/\">最后一页</a></li>\n"
+				"            <ul class=\"pagination\" id=\"pagination\">\n"
+				"\n"
 				"            </ul>\n"
 				"        </div>\n"
 				"    </div>\n"
@@ -247,33 +233,33 @@ namespace my_skin {
 				"</body>\n"
 				"</html>\n"
 				"";
-		#line 97 "index.tmpl"
+		#line 83 "index.tmpl"
 		} // end of template render
-	#line 98 "index.tmpl"
+	#line 84 "index.tmpl"
 	}; // end of class index
-#line 99 "index.tmpl"
+#line 85 "index.tmpl"
 } // end of namespace my_skin
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
 namespace {
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
  cppcms::views::generator my_generator; 
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
  struct loader { 
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
   loader() { 
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
    my_generator.name("my_skin");
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
    my_generator.add_view<my_skin::message,content::message>("message",true);
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
    my_generator.add_view<my_skin::index,content::index>("index",true);
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
     cppcms::views::pool::instance().add(my_generator);
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
  }
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
  ~loader() {  cppcms::views::pool::instance().remove(my_generator); }
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
 } a_loader;
-#line 100 "index.tmpl"
+#line 86 "index.tmpl"
 } // anon 

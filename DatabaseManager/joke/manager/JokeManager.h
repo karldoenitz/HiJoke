@@ -16,7 +16,7 @@ private:
     cppdb::session sql_session;
 public:
     JokeManager();
-    std::shared_ptr<std::vector<std::shared_ptr<Joke>>> get_jokes(int begin_id, int end_id);
+    std::shared_ptr<std::vector<std::shared_ptr<Joke>>> get_jokes(int begin_id, int end_id, int joke_status);
     std::shared_ptr<Joke> get_joke(int id);
     int get_joke_count(int status);
     bool write_joke(std::shared_ptr<Joke> joke);
