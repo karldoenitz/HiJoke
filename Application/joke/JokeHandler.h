@@ -38,5 +38,11 @@ public:
     virtual void main(std::string url);
 };
 
+class SetJokeStatusHandler : public cppcms::application {
+public:
+    SetJokeStatusHandler(cppcms::service &srv) : cppcms::application(srv){};
+    virtual void main(std::string url);
+};
+
 
 #endif //HIJOKE_JOKEHANDLER_H

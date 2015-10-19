@@ -20,6 +20,7 @@ public:
     std::shared_ptr<Joke> get_joke(int id);
     int get_joke_count(int status);
     bool write_joke(std::shared_ptr<Joke> joke);
+    bool set_joke_status(int joke_id, int status);
 };
 
 

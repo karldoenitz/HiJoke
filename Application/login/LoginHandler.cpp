@@ -87,3 +87,65 @@ void AdminView::main(std::string url) {
     c.static_host = static_file_path;
     render("index",c);
 }
+
+cppcms::json::value GetUser::get_users(int start, int length, int status) {
+    cppcms::json::value users_json;
+    std::shared_ptr<DatabaseOperator>databaseOperator(new DatabaseOperator());
+    std::shared_ptr<User>user(new User());
+    user->set_status(status);
+    std::shared_ptr<std::vector<std::shared_ptr<User>>>users = databaseOperator->userManager->get_user(user, start, length);
+    users_json["status"] = status;
+    users_json["current_page"] = start / length + 1;
+    users_json["current_users_counts"] = users->size();
+    users_json["users_counts"] = databaseOperator->userManager->get_user_count(status);
+    for (int i = 0; i < users->size(); ++i) {
+        cppcms::json::value user_json;
+        user_json["username"] = users->at(i)->get_username();
+        user_json["usercode"] = users->at(i)->get_usercode();
+        users_json["users"][i] = user_json;
+    }
+    return users_json;
+}
+
+void GetUsersHandler::main(std::string url) {
+    std::string start_index = request().get("start_index");
+    std::string length = request().get("length");
+    std::string status = request().get("status");
+    int user_status = status!=""?std::atoi(status.c_str()):1;
+    int start = std::atoi(start_index.c_str());
+    int end = std::atoi(length.c_str());
+    GetUser *getUser = new GetUser();
+    response().content_type("application/json; charset=\"utf-8\"");
+    response().out() << getUser->get_users(start, end, user_status);
+    delete getUser;
+}
+
+void SetUserStatusHandler::main(std::string url) {
+    session().load();
+    cookie logout_cookie = request().cookie_by_name("usercode");
+    std::string usercode = logout_cookie.value();
+    cppcms::json::value json_error;
+    json_error["result"] = false;
+    json_error["reason"] = "user not login";
+    response().content_type("application/json; charset=\"utf-8\"");
+    if (usercode.size() <= 0){
+        response().out() << json_error;
+        return;
+    }
+    std::string session_value = session()[usercode];
+    if (session_value == "false"){
+        response().out() << json_error;
+        return;
+    }
+    std::string targetusercode = request().get("usercode");
+    std::string status = request().get("status");
+    int userstatus = std::atoi(status.c_str());
+    DatabaseOperator *databaseOperator = new DatabaseOperator();
+    bool result = databaseOperator->userManager->set_user_status(targetusercode, userstatus);
+    cppcms::json::value json;
+    json["result"] = result;
+    json["reason"] = "database operate result";
+    response().content_type("application/json; charset=\"utf-8\"");
+    response().out() << json;
+    delete databaseOperator;
+}

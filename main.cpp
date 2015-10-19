@@ -50,6 +50,18 @@ int main(int argc,char ** argv) {
                 cppcms::applications_factory<AdminView>(),
                 cppcms::mount_point("/admin-index")
         );
+        app.applications_pool().mount(
+                cppcms::applications_factory<GetUsersHandler>(),
+                cppcms::mount_point("/get-users")
+        );
+        app.applications_pool().mount(
+                cppcms::applications_factory<SetUserStatusHandler>(),
+                cppcms::mount_point("/set-user-status")
+        );
+        app.applications_pool().mount(
+                cppcms::applications_factory<SetJokeStatusHandler>(),
+                cppcms::mount_point("/set-joke-status")
+        );
         app.run();
     }
     catch (std::exception const &e){

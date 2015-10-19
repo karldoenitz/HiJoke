@@ -73,3 +73,15 @@ int JokeManager::get_joke_count(int status) {
     }
     return 0;
 }
+
+bool JokeManager::set_joke_status(int joke_id, int status) {
+    try {
+        cppdb::statement stat;
+        stat = this->sql_session << "update joke set status=? and id=?" << status << joke_id;
+        stat.exec();
+        return true;
+    }catch (std::exception const &e) {
+        std::cerr << "ERROR: " << e.what() << std::endl;
+        return false;
+    }
+}

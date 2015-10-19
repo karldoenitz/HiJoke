@@ -66,3 +66,34 @@ void JokeHandler::main(std::string url) {
     response().out() << json_result;
     delete databaseOperator;
 }
+
+void SetJokeStatusHandler::main(std::string url) {
+    session().load();
+    cookie logout_cookie = request().cookie_by_name("usercode");
+    std::string usercode = logout_cookie.value();
+    cppcms::json::value json_error;
+    json_error["result"] = false;
+    json_error["reason"] = "user not login";
+    response().content_type("application/json; charset=\"utf-8\"");
+    if (usercode.size() <= 0){
+        response().out() << json_error;
+        return;
+    }
+    std::string session_value = session()[usercode];
+    if (session_value == "false"){
+        response().out() << json_error;
+        return;
+    }
+    std::string id = request().get("id");
+    std::string status = request().get("status");
+    int joke_id = std::atoi(id.c_str());
+    int joke_status = std::atoi(status.c_str());
+    DatabaseOperator *databaseOperator = new DatabaseOperator();
+    bool result = databaseOperator->jokeManager->set_joke_status(joke_id, joke_status);
+    cppcms::json::value json_result;
+    json_result["result"] = result;
+    json_result["reason"] = "database operate result";
+    response().content_type("application/json; charset=\"utf-8\"");
+    response().out() << json_result;
+    delete databaseOperator;
+}

@@ -51,4 +51,21 @@ public:
     virtual void main(std::string url);
 };
 
+class GetUser {
+public:
+    cppcms::json::value get_users(int start, int length, int status);
+};
+
+class GetUsersHandler : public cppcms::application {
+public:
+    GetUsersHandler(cppcms::service &srv) : cppcms::application(srv){}
+    virtual void main(std::string url);
+};
+
+class SetUserStatusHandler : public cppcms::application {
+public:
+    SetUserStatusHandler(cppcms::service &srv) : cppcms::application(srv){}
+    virtual void main(std::string url);
+};
+
 #endif //HIJOKE_LOGINHANDLER_H

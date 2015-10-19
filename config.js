@@ -1,10 +1,23 @@
 {
     "service" : {
         "api" : "http",
-        "port" : 8080,
+        "port" : 8888,
     },
     "http" : {
-        "script_names" : ["/register", "/login", "/logout", "/jokes", "/write-joke", "/get-comment", "/admin-login-view", "/admin-login", "/admin-index"]
+        "script_names" : [
+            "/register",
+            "/login",
+            "/logout",
+            "/jokes",
+            "/write-joke",
+            "/get-comment",
+            "/admin-login-view",
+            "/admin-login",
+            "/admin-index",
+            "/get-users",
+            "/set-user-status",
+            "/set-joke-status"
+        ]
     },
     "session" : {
         "expire" : "renew",

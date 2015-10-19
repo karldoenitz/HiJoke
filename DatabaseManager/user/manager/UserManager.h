@@ -21,7 +21,9 @@ public:
     UserManager();
     bool save_user(std::shared_ptr<User> user);
     std::shared_ptr<User> get_user(std::shared_ptr<User> user, int condition);
-    std::shared_ptr<User> get_user(std::shared_ptr<User> user, int start_index, int length);
+    std::shared_ptr<std::vector<std::shared_ptr<User>>> get_user(std::shared_ptr<User> user, int start_index, int length);
+    int get_user_count(int status);
+    bool set_user_status(std::string usercode, int status);
 };
 
 
