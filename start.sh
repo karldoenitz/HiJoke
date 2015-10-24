@@ -7,7 +7,7 @@ if [ $1 = "compile" ]; then
 elif [ $1 = "views" ]; then
     echo "---start compile views---"
     cd Templates
-    cppcms_tmpl_cc login.tmpl index.tmpl -o views.cpp
+    cppcms_tmpl_cc *.tmpl -o views.cpp
     cd ..
     echo "---compile success---"
 elif [ $1 = "run" ]; then
@@ -16,7 +16,7 @@ elif [ $1 = "run" ]; then
 else
     echo "---start compile views---"
     cd Templates
-    cppcms_tmpl_cc login.tmpl index.tmpl -o views.cpp
+    cppcms_tmpl_cc *.tmpl -o views.cpp
     cd ..
     echo "---compile success---"
     echo "---start compile---"

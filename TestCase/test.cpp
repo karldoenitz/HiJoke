@@ -23,7 +23,7 @@ void test_user(){
 void test_joke(){
     std::shared_ptr<std::vector<std::shared_ptr<Joke>>> joke_vector;
     std::shared_ptr<DatabaseOperator>databaseOperator(new DatabaseOperator());
-    joke_vector = databaseOperator->jokeManager->get_jokes(1, 5);
+    joke_vector = databaseOperator->jokeManager->get_jokes(1, 5, 2);
     for (int i=0; i<joke_vector->size(); i++){
         cout << "---------------------------------------------------------" << endl;
         cout << "id:" << joke_vector->at(i)->get_joke_id() << endl;
