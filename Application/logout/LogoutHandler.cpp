@@ -6,12 +6,8 @@
 
 void LogoutHandler::main(std::string url) {
     cppcms::json::value json_result;
-    cookie logout_cookie = request().cookie_by_name("usercode");
-    std::string usercode = logout_cookie.value();
-    session().load();
-    session()[usercode] = "false";
-    session().save();
+    std::string usercode = get_cookie("usercode");
+    set_session(usercode, "false");
     json_result["result"] = "logout success";
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json_result;
+    response_as_json(json_result);
 }

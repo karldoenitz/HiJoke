@@ -14,20 +14,17 @@ bool WriteJoke::write_joke(std::string title, std::string content) {
 }
 
 void WriteJokeHandler::main(std::string url) {
-    session().load();
-    cookie logout_cookie = request().cookie_by_name("usercode");
-    std::string usercode = logout_cookie.value();
+    std::string usercode = get_cookie("usercode");
     cppcms::json::value json_error;
     json_error["result"] = false;
     json_error["reason"] = "user not login";
-    response().content_type("application/json; charset=\"utf-8\"");
     if (usercode.size() <= 0){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
-    std::string session_value = session()[usercode];
+    std::string session_value = get_session(usercode);
     if (session_value == "false"){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
     std::string title = request().post("title");
@@ -36,7 +33,7 @@ void WriteJokeHandler::main(std::string url) {
     bool result = writeJoke->write_joke(title, content);
     cppcms::json::value json_result;
     json_result["result"] = result;
-    response().out() << json_result;
+    response_as_json(json_result);
     delete writeJoke;
 }
 
@@ -62,26 +59,22 @@ void JokeHandler::main(std::string url) {
         json_joke["content"] = jokes->at(i)->get_content();
         json_result["jokes"][i] = json_joke;
     }
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json_result;
+    response_as_json(json_result);
     delete databaseOperator;
 }
 
 void SetJokeStatusHandler::main(std::string url) {
-    session().load();
-    cookie logout_cookie = request().cookie_by_name("usercode");
-    std::string usercode = logout_cookie.value();
+    std::string usercode = get_cookie("usercode");
     cppcms::json::value json_error;
     json_error["result"] = false;
     json_error["reason"] = "user not login";
-    response().content_type("application/json; charset=\"utf-8\"");
     if (usercode.size() <= 0){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
-    std::string session_value = session()[usercode];
+    std::string session_value = get_session(usercode);
     if (session_value == "false"){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
     std::string id = request().get("id");
@@ -93,7 +86,6 @@ void SetJokeStatusHandler::main(std::string url) {
     cppcms::json::value json_result;
     json_result["result"] = result;
     json_result["reason"] = "database operate result";
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json_result;
+    response_as_json(json_result);
     delete databaseOperator;
 }

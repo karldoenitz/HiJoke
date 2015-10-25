@@ -24,17 +24,13 @@ void LoginHandler::main(std::string url) {
     cppcms::json::value json_result;
     if (usercode.size() > 0){
         json_result["result"] = "login success";
-        cookie login_cookie("usercode", usercode, 84600, "/");
-        response().set_cookie(login_cookie);
-        session().load();
-        session()[usercode] = "true";
-        session().save();
+        set_cookie("usercode", usercode);
+        set_session(usercode, "true");
     }
     else {
         json_result["result"] = "login failed";
     }
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json_result;
+    response_as_json(json_result);
     delete login;
 }
 
@@ -46,17 +42,13 @@ void AdminLoginHandler::main(std::string url) {
     cppcms::json::value json_result;
     if (usercode.size() > 0){
         json_result["result"] = "login success";
-        cookie login_cookie("usercode", usercode, 84600, "/");
-        response().set_cookie(login_cookie);
-        session().load();
-        session()[usercode] = "true";
-        session().save();
+        set_cookie("usercode", usercode);
+        set_session(usercode, "true");
     }
     else {
         json_result["result"] = "login failed";
     }
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json_result;
+    response_as_json(json_result);
     delete login;
 }
 
@@ -67,16 +59,14 @@ void AdminLoginView::main(std::string url) {
 }
 
 void AdminView::main(std::string url) {
-    session().load();
-    cookie logout_cookie = request().cookie_by_name("usercode");
-    std::string usercode = logout_cookie.value();
+    std::string usercode = get_cookie("usercode");
     if (usercode.size() <= 0){
         content::message c;
         c.static_host = static_file_path;
         render("message",c);
         return;
     }
-    std::string session_value = session()[usercode];
+    std::string session_value = get_session(usercode);
     if (session_value == "false"){
         content::message c;
         c.static_host = static_file_path;
@@ -115,26 +105,23 @@ void GetUsersHandler::main(std::string url) {
     int start = std::atoi(start_index.c_str());
     int end = std::atoi(length.c_str());
     GetUser *getUser = new GetUser();
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << getUser->get_users(start, end, user_status);
+    cppcms::json::value user_json = getUser->get_users(start, end, user_status);
+    response_as_json(user_json);
     delete getUser;
 }
 
 void SetUserStatusHandler::main(std::string url) {
-    session().load();
-    cookie logout_cookie = request().cookie_by_name("usercode");
-    std::string usercode = logout_cookie.value();
+    std::string usercode = get_cookie("usercode");
     cppcms::json::value json_error;
     json_error["result"] = false;
     json_error["reason"] = "user not login";
-    response().content_type("application/json; charset=\"utf-8\"");
     if (usercode.size() <= 0){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
-    std::string session_value = session()[usercode];
+    std::string session_value = get_session(usercode);
     if (session_value == "false"){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
     std::string targetusercode = request().get("usercode");
@@ -145,7 +132,6 @@ void SetUserStatusHandler::main(std::string url) {
     cppcms::json::value json;
     json["result"] = result;
     json["reason"] = "database operate result";
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json;
+    response_as_json(json);
     delete databaseOperator;
 }

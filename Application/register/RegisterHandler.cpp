@@ -35,7 +35,6 @@ void RegisterHandler::main(std::string url) {
         json_result["result"] = false;
         json_result["reason"] = "注册失败";
     }
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << json_result;
+    response_as_json(json_result);
     delete registerUser;
 }

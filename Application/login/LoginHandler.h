@@ -5,49 +5,35 @@
 #ifndef HIJOKE_LOGINHANDLER_H
 #define HIJOKE_LOGINHANDLER_H
 
-#include <string.h>
-#include <iostream>
-#include <cppcms/application.h>
-#include <cppcms/applications_pool.h>
-#include <cppcms/json.h>
-#include <cppcms/service.h>
-#include <cppcms/mount_point.h>
-#include <cppcms/session_interface.h>
-#include <cppcms/http_request.h>
-#include <cppcms/http_response.h>
-#include <cppcms/http_cookie.h>
-#include "../../DatabaseManager/DatabaseOperator.h"
+#include "../BaseHandler.h"
 #include "../../Templates/content.h"
-
-using namespace std;
-using namespace cppcms::http;
 
 class Login {
 public:
     std::string user_login(std::string username, std::string password, int status);
 };
 
-class LoginHandler : public cppcms::application {
+class LoginHandler : public BaseHandler {
 public:
-    LoginHandler(cppcms::service &srv) : cppcms::application(srv){};
+    LoginHandler(cppcms::service &srv) : BaseHandler(srv){};
     virtual void main(std::string url);
 };
 
-class AdminLoginHandler : public cppcms::application {
+class AdminLoginHandler : public BaseHandler {
 public:
-    AdminLoginHandler(cppcms::service &srv) : cppcms::application(srv){};
+    AdminLoginHandler(cppcms::service &srv) : BaseHandler(srv){};
     virtual void main(std::string url);
 };
 
-class AdminLoginView : public cppcms::application {
+class AdminLoginView : public BaseHandler {
 public:
-    AdminLoginView(cppcms::service &srv) : cppcms::application(srv){};
+    AdminLoginView(cppcms::service &srv) : BaseHandler(srv){};
     virtual void main(std::string url);
 };
 
-class AdminView : public cppcms::application {
+class AdminView : public BaseHandler {
 public:
-    AdminView(cppcms::service &srv) : cppcms::application(srv){};
+    AdminView(cppcms::service &srv) : BaseHandler(srv){};
     virtual void main(std::string url);
 };
 
@@ -56,15 +42,15 @@ public:
     cppcms::json::value get_users(int start, int length, int status);
 };
 
-class GetUsersHandler : public cppcms::application {
+class GetUsersHandler : public BaseHandler {
 public:
-    GetUsersHandler(cppcms::service &srv) : cppcms::application(srv){}
+    GetUsersHandler(cppcms::service &srv) : BaseHandler(srv){}
     virtual void main(std::string url);
 };
 
-class SetUserStatusHandler : public cppcms::application {
+class SetUserStatusHandler : public BaseHandler {
 public:
-    SetUserStatusHandler(cppcms::service &srv) : cppcms::application(srv){}
+    SetUserStatusHandler(cppcms::service &srv) : BaseHandler(srv){}
     virtual void main(std::string url);
 };
 

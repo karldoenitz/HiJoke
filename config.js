@@ -11,6 +11,7 @@
             "/jokes",
             "/write-joke",
             "/get-comment",
+            "/write-comment",
             "/admin-login-view",
             "/admin-login",
             "/admin-index",

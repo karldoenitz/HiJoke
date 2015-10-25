@@ -28,8 +28,8 @@ void CommentHandler::main(std::string url) {
     std::string joke_id = request().get("joke_id");
     int id = std::atoi(joke_id.c_str());
     GetComment *getComment = new GetComment();
-    response().content_type("application/json; charset=\"utf-8\"");
-    response().out() << getComment->get_comment(id);
+    cppcms::json::value result = getComment->get_comment(id);
+    response_as_json(result);
     delete getComment;
 }
 
@@ -40,20 +40,17 @@ bool WriteComment::write_comment(int joke_id, std::string usercode, std::string 
 }
 
 void WriteCommentHandler::main(std::string url) {
-    session().load();
-    cookie logout_cookie = request().cookie_by_name("usercode");
-    std::string usercode = logout_cookie.value();
+    std::string usercode = get_cookie("usercode");
     cppcms::json::value json_error;
     json_error["result"] = false;
     json_error["reason"] = "user not login";
-    response().content_type("application/json; charset=\"utf-8\"");
     if (usercode.size() <= 0){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
-    std::string session_value = session()[usercode];
+    std::string session_value = get_session(usercode);
     if (session_value == "false"){
-        response().out() << json_error;
+        response_as_json(json_error);
         return;
     }
     std::string joke = request().post("joke_id");
@@ -63,6 +60,6 @@ void WriteCommentHandler::main(std::string url) {
     bool result = writeComment->write_comment(joke_id, usercode, comment);
     cppcms::json::value json_result;
     json_result["result"] = result;
-    response().out() << json_result;
+    response_as_json(json_result);
     delete writeComment;
 }

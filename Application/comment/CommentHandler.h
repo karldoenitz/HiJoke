@@ -5,30 +5,16 @@
 #ifndef HIJOKE_COMMENTHANDLER_H
 #define HIJOKE_COMMENTHANDLER_H
 
-#include <cppcms/application.h>
-#include <cppcms/applications_pool.h>
-#include <cppcms/service.h>
-#include <cppcms/http_response.h>
-#include <cppcms/mount_point.h>
-#include <cppcms/http_request.h>
-#include <cppcms/http_cookie.h>
-#include <cppcms/session_interface.h>
-#include <cppcms/json.h>
-#include <iostream>
-#include "../../DatabaseManager/DatabaseOperator.h"
-#include "../../Utils/Utils.h"
-
-using namespace std;
-using namespace cppcms::http;
+#include "../BaseHandler.h"
 
 class WriteComment {
 public:
     bool write_comment(int joke_id, std::string usercode, std::string comment);
 };
 
-class WriteCommentHandler : public cppcms::application {
+class WriteCommentHandler : public BaseHandler {
 public:
-    WriteCommentHandler(cppcms::service &srv) : cppcms::application(srv){};
+    WriteCommentHandler(cppcms::service &srv) : BaseHandler(srv){};
     virtual void main(std::string url);
 };
 
@@ -37,9 +23,9 @@ public:
     cppcms::json::value get_comment(int joke_id);
 };
 
-class CommentHandler : public cppcms::application {
+class CommentHandler : public BaseHandler {
 public:
-    CommentHandler(cppcms::service &srv) : cppcms::application(srv){};
+    CommentHandler(cppcms::service &srv) : BaseHandler(srv){};
     virtual void main(std::string url);
 };
 
