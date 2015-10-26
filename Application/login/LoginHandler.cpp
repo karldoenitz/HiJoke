@@ -25,7 +25,7 @@ void LoginHandler::main(std::string url) {
     if (usercode.size() > 0){
         json_result["result"] = "login success";
         set_cookie("usercode", usercode);
-        set_session(usercode, "true");
+        set_session(usercode, "user");
     }
     else {
         json_result["result"] = "login failed";
@@ -43,7 +43,7 @@ void AdminLoginHandler::main(std::string url) {
     if (usercode.size() > 0){
         json_result["result"] = "login success";
         set_cookie("usercode", usercode);
-        set_session(usercode, "true");
+        set_session(usercode, "admin");
     }
     else {
         json_result["result"] = "login failed";
@@ -67,7 +67,7 @@ void AdminView::main(std::string url) {
         return;
     }
     std::string session_value = get_session(usercode);
-    if (session_value == "false"){
+    if (session_value != "admin"){
         content::message c;
         c.static_host = static_file_path;
         render("message",c);
@@ -120,7 +120,7 @@ void SetUserStatusHandler::main(std::string url) {
         return;
     }
     std::string session_value = get_session(usercode);
-    if (session_value == "false"){
+    if (session_value != "admin"){
         response_as_json(json_error);
         return;
     }

@@ -49,7 +49,7 @@ void WriteCommentHandler::main(std::string url) {
         return;
     }
     std::string session_value = get_session(usercode);
-    if (session_value == "false"){
+    if (session_value != "user"){
         response_as_json(json_error);
         return;
     }
