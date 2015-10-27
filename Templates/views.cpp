@@ -56,7 +56,7 @@ namespace my_skin {
 				"    <script src=\"";
 			#line 16 "index.tmpl"
 			out()<<cppcms::filters::escape(content.static_host);
-			#line 83 "index.tmpl"
+			#line 85 "index.tmpl"
 			out()<<"static/app-js/function.js\" type=\"text/javascript\"></script>\n"
 				"</head>\n"
 				"<body>\n"
@@ -109,12 +109,14 @@ namespace my_skin {
 				"    <div class=\"container\">\n"
 				"        <div class=\"page-title\" id=\"page-title\">\n"
 				"        </div>\n"
-				"        <table id=\"show_result\" class=\"table table-striped table-hover\">\n"
-				"            <thead id=\"result_head\">\n"
-				"            </thead>\n"
-				"            <tbody id=\"result_body\">\n"
-				"            </tbody>\n"
-				"        </table>\n"
+				"        <div class=\"panel panel-default\">\n"
+				"            <table id=\"show_result\" class=\"table table-striped table-border\" style=\"border-collapse: separate\">\n"
+				"                <thead id=\"result_head\">\n"
+				"                </thead>\n"
+				"                <tbody id=\"result_body\">\n"
+				"                </tbody>\n"
+				"            </table>\n"
+				"        </div>\n"
 				"        <div style=\"margin-left:auto;margin-right:auto;text-align:center;\">\n"
 				"            <ul class=\"pagination\" id=\"pagination\">\n"
 				"\n"
@@ -125,11 +127,11 @@ namespace my_skin {
 				"</body>\n"
 				"</html>\n"
 				"";
-		#line 83 "index.tmpl"
+		#line 85 "index.tmpl"
 		} // end of template render
-	#line 84 "index.tmpl"
+	#line 86 "index.tmpl"
 	}; // end of class index
-#line 85 "index.tmpl"
+#line 87 "index.tmpl"
 } // end of namespace my_skin
 #line 1 "login.tmpl"
 #include "content.h" 
