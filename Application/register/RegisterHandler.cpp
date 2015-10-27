@@ -15,7 +15,7 @@ bool Register::user_register(std::string username, std::string password) {
     std::shared_ptr<Utils>utils(new Utils());
     std::string uuid = utils->uuid();
     user->set_username(username);
-    user->set_password(password);
+    user->set_password(cppcms::util::md5hex(password));
     user->set_usercode(uuid);
     user->set_status(1);
     bool result = databaseOperator->userManager->save_user(user);

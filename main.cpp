@@ -4,6 +4,7 @@
 #include "Application/logout/LogoutHandler.h"
 #include "Application/joke/JokeHandler.h"
 #include "Application/comment/CommentHandler.h"
+#include "Application/staticserver/StaticServer.h"
 
 using namespace std;
 
@@ -61,6 +62,9 @@ int main(int argc,char ** argv) {
         app.applications_pool().mount(
                 cppcms::applications_factory<SetJokeStatusHandler>(),
                 cppcms::mount_point("/set-joke-status")
+        );
+        app.applications_pool().mount(
+                cppcms::applications_factory<StaticServer>()
         );
         app.run();
     }

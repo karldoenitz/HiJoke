@@ -9,6 +9,7 @@
 #include <string.h>
 
 extern std::string db_connection;
+extern std::string static_file_host;
 extern std::string static_file_path;
 
 #endif //HIJOKE_SETTINGS_H

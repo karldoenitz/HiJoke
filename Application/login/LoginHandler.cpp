@@ -8,7 +8,7 @@ std::string Login::user_login(std::string username, std::string password, int st
     std::shared_ptr<DatabaseOperator>databaseOperator(new DatabaseOperator());
     std::shared_ptr<User>user(new User());
     user->set_username(username);
-    user->set_password(password);
+    user->set_password(cppcms::util::md5hex(password));
     user = databaseOperator->userManager->get_user(user, 2);
     if (user->get_status() != status) {
         return "";
@@ -54,7 +54,7 @@ void AdminLoginHandler::main(std::string url) {
 
 void AdminLoginView::main(std::string url) {
     content::message c;
-    c.static_host = static_file_path;
+    c.static_host = static_file_host;
     render("message",c);
 }
 
@@ -62,19 +62,19 @@ void AdminView::main(std::string url) {
     std::string usercode = get_cookie("usercode");
     if (usercode.size() <= 0){
         content::message c;
-        c.static_host = static_file_path;
+        c.static_host = static_file_host;
         render("message",c);
         return;
     }
     std::string session_value = get_session(usercode);
     if (session_value != "admin"){
         content::message c;
-        c.static_host = static_file_path;
+        c.static_host = static_file_host;
         render("message",c);
         return;
     }
     content::index c;
-    c.static_host = static_file_path;
+    c.static_host = static_file_host;
     render("index",c);
 }
 

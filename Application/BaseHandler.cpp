@@ -5,9 +5,19 @@
 #include "BaseHandler.h"
 
 
-void BaseHandler::response_as_json(cppcms::json::value json) {
+void BaseHandler::response_as_json(cppcms::json::value &json) {
     response().content_type("application/json; charset=\"utf-8\"");
     response().out() << json;
+}
+
+void BaseHandler::response_as_404() {
+    response().status(404);
+    response().out() << "<html><head><title>404 not found</title></head><body><h1>404 not found</h1></body></html>";
+}
+
+void BaseHandler::response_as_static(std::ifstream &f) {
+    response().content_type("");
+    response().out() << f.rdbuf();
 }
 
 void BaseHandler::set_cookie(std::string key, std::string value) {

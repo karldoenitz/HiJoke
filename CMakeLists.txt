@@ -30,5 +30,5 @@ set(SOURCE_FILES
         Application/joke/JokeHandler.h
         Application/comment/CommentHandler.cpp
         Application/comment/CommentHandler.h
-        Templates/content.h settings.h settings.cpp Application/BaseHandler.h Application/BaseHandler.cpp)
+        Templates/content.h settings.h settings.cpp Application/BaseHandler.h Application/BaseHandler.cpp Application/staticserver/StaticServer.cpp Application/staticserver/StaticServer.h)
 add_executable(HiJoke ${SOURCE_FILES})

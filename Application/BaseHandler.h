@@ -7,14 +7,17 @@
 
 #include <cppcms/application.h>
 #include <cppcms/applications_pool.h>
-#include <cppcms/service.h>
-#include <cppcms/http_response.h>
-#include <cppcms/mount_point.h>
-#include <cppcms/http_request.h>
 #include <cppcms/http_cookie.h>
-#include <cppcms/session_interface.h>
+#include <cppcms/http_request.h>
+#include <cppcms/http_response.h>
 #include <cppcms/json.h>
+#include <cppcms/mount_point.h>
+#include <cppcms/service.h>
+#include <cppcms/session_interface.h>
+#include <cppcms/util.h>
+#include <cppcms/url_dispatcher.h>
 #include <iostream>
+#include <fstream>
 #include "../DatabaseManager/DatabaseOperator.h"
 #include "../Utils/Utils.h"
 
@@ -24,7 +27,9 @@ using namespace cppcms::http;
 class BaseHandler : public cppcms::application {
 public:
     BaseHandler(cppcms::service &srv) : cppcms::application(srv){};
-    void response_as_json(cppcms::json::value json);
+    void response_as_json(cppcms::json::value &json);
+    void response_as_static(std::ifstream &f);
+    void response_as_404();
     void set_cookie(std::string key, std::string value);
     std::string get_cookie(std::string key);
     void set_session(std::string key, std::string value);
