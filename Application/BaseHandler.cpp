@@ -11,7 +11,7 @@ void BaseHandler::response_as_json(cppcms::json::value &json) {
 }
 
 void BaseHandler::response_as_404() {
-    response().status(404);
+    response().status(cppcms::http::response::not_found);
     response().out() << "<html><head><title>404 not found</title></head><body><h1>404 not found</h1></body></html>";
 }
 

@@ -63,9 +63,11 @@ int main(int argc,char ** argv) {
                 cppcms::applications_factory<SetJokeStatusHandler>(),
                 cppcms::mount_point("/set-joke-status")
         );
-        app.applications_pool().mount(
-                cppcms::applications_factory<StaticServer>()
-        );
+        if (is_debug){
+            app.applications_pool().mount(
+                    cppcms::applications_factory<StaticServer>()
+            );
+        }
         app.run();
     }
     catch (std::exception const &e){
