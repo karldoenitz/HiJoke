@@ -54,9 +54,11 @@ void JokeHandler::main(std::string url) {
     json_result["current_page"] = start / end + 1;
     for (int i = 0; i < current_page_joke_number; ++i) {
         cppcms::json::value json_joke;
-        json_joke["id"] = jokes->at(i)->get_joke_id();
+        int joke_id = jokes->at(i)->get_joke_id();
+        json_joke["id"] = joke_id;
         json_joke["title"] = jokes->at(i)->get_title();
         json_joke["content"] = jokes->at(i)->get_content();
+        json_joke["comment_count"] = databaseOperator->commentManager->get_comment_vector(joke_id)->size();
         json_result["jokes"][i] = json_joke;
     }
     response_as_json(json_result);
