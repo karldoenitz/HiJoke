@@ -21,7 +21,7 @@ namespace my_skin {
 				"<!DOCTYPE html>\n"
 				"<html lang=\"en\">\n"
 				"<head>\n"
-				"    <meta charset=\"UTF-8\">\n"
+				"    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
 				"    <title>主页－后台管理系统</title>\n"
 				"    <link href=\"";
 			#line 10 "index.tmpl"
@@ -110,7 +110,7 @@ namespace my_skin {
 				"        <div class=\"page-title\" id=\"page-title\">\n"
 				"        </div>\n"
 				"        <div class=\"panel panel-default\">\n"
-				"            <table id=\"show_result\" class=\"table table-striped table-border\" style=\"border-collapse: separate\">\n"
+				"            <table id=\"show_result\" class=\"table table-striped table-border\">\n"
 				"                <thead id=\"result_head\">\n"
 				"                </thead>\n"
 				"                <tbody id=\"result_body\">\n"
@@ -156,7 +156,7 @@ namespace my_skin {
 				"<!DOCTYPE html>\n"
 				"<html lang=\"en\">\n"
 				"<head>\n"
-				"    <meta charset=\"UTF-8\">\n"
+				"    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n"
 				"    <title>登录－后台管理系统</title>\n"
 				"    <link href=\"";
 			#line 10 "login.tmpl"
