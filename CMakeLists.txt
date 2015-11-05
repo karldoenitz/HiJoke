@@ -1,34 +1,44 @@
 cmake_minimum_required(VERSION 3.3)
 project(HiJoke)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lcppdb -lcppcms -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
-        main.cpp
-        DatabaseManager
-        TestCase
-        Utils
-        TestCase/test.cpp
-        DatabaseManager/joke/bean/Joke.cpp
-        DatabaseManager/joke/bean/Joke.h
-        DatabaseManager/comment/bean/Comment.cpp
-        DatabaseManager/comment/bean/Comment.h
-        DatabaseManager/joke/manager/JokeManager.cpp
-        DatabaseManager/joke/manager/JokeManager.h
-        DatabaseManager/comment/manager/CommentManager.cpp
-        DatabaseManager/comment/manager/CommentManager.h
-        Application
-        Application/register/RegisterHandler.cpp
-        Application/register/RegisterHandler.h
-        Utils/Utils.cpp
-        Utils/Utils.h 
-        Application/login/LoginHandler.cpp 
-        Application/login/LoginHandler.h 
-        Application/logout/LogoutHandler.cpp 
-        Application/logout/LogoutHandler.h 
-        Application/joke/JokeHandler.cpp
-        Application/joke/JokeHandler.h
-        Application/comment/CommentHandler.cpp
-        Application/comment/CommentHandler.h
-        Templates/content.h settings.h settings.cpp Application/BaseHandler.h Application/BaseHandler.cpp Application/staticserver/StaticServer.cpp Application/staticserver/StaticServer.h)
+    Application/comment/CommentHandler.cpp
+    Application/comment/CommentHandler.h
+    Application/joke/JokeHandler.cpp
+    Application/joke/JokeHandler.h
+    Application/login/LoginHandler.cpp
+    Application/login/LoginHandler.h
+    Application/logout/LogoutHandler.cpp
+    Application/logout/LogoutHandler.h
+    Application/register/RegisterHandler.cpp
+    Application/register/RegisterHandler.h
+    Application/staticserver/StaticServer.cpp
+    Application/staticserver/StaticServer.h
+    Application/BaseHandler.cpp
+    Application/BaseHandler.h
+    DatabaseManager/comment/bean/Comment.cpp
+    DatabaseManager/comment/bean/Comment.h
+    DatabaseManager/comment/manager/CommentManager.cpp
+    DatabaseManager/comment/manager/CommentManager.h
+    DatabaseManager/joke/bean/Joke.cpp
+    DatabaseManager/joke/bean/Joke.h
+    DatabaseManager/joke/manager/JokeManager.cpp
+    DatabaseManager/joke/manager/JokeManager.h
+    DatabaseManager/user/bean/User.cpp
+    DatabaseManager/user/bean/User.h
+    DatabaseManager/user/manager/UserManager.cpp
+    DatabaseManager/user/manager/UserManager.h
+    DatabaseManager/DatabaseOperator.cpp
+    DatabaseManager/DatabaseOperator.h
+    Templates/content.h
+    Templates/views.cpp
+    TestCase/test.cpp
+    Utils/Utils.cpp
+    Utils/Utils.h
+    main.cpp
+    settings.cpp
+    settings.h)
+
 add_executable(HiJoke ${SOURCE_FILES})
