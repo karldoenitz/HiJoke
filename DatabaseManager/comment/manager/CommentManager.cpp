@@ -12,7 +12,7 @@ CommentManager::CommentManager() {
 bool CommentManager::write_comment(int joke_id, std::string usercode, std::string comment) {
     try {
         cppdb::statement stat;
-        stat = this->sql_session << "INSERT INTO comment (job_id, usercode, comment) values (?, ?, ?)" << joke_id << usercode << comment;
+        stat = this->sql_session << "INSERT INTO comment (joke_id, usercode, comment) values (?, ?, ?)" << joke_id << usercode << comment;
         stat.exec();
         return true;
     }catch (std::exception const &e) {
