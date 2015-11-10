@@ -7,6 +7,7 @@ Cppdb
 boost
 
 ## compile and run
+compile the views: run the command "./start.sh views"  
 compile the projection: run the command "./start.sh compile"  
 run the projection: run the command "./start.sh run"
 
