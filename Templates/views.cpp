@@ -110,7 +110,7 @@ namespace my_skin {
 				"        <div class=\"page-title\" id=\"page-title\">\n"
 				"        </div>\n"
 				"        <div class=\"panel panel-default\">\n"
-				"            <table id=\"show_result\" class=\"table table-striped table-border\">\n"
+				"            <table id=\"show_result\" class=\"table table-striped table-border\" style=\"table-layout:fixed;\">\n"
 				"                <thead id=\"result_head\">\n"
 				"                </thead>\n"
 				"                <tbody id=\"result_body\">\n"
