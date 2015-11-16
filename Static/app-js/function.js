@@ -74,11 +74,11 @@ function draw_joke_result(data)
     document.getElementById('pagination').innerHTML = page;
     //绘制表格
       //绘制表头
-    var table_header = "<tr><th>id</th><th>标题</th><th>内容</th><th>操作</th></tr>";
+    var table_header = "<tr><th width='5%'>id</th><th width='12%'>标题</th><th style=\"WORD-WRAP: break-word\" width='68%'>内容</th><th width='5%'>操作</th></tr>";
     document.getElementById('result_head').innerHTML = table_header;
     var table_body = "";
     for (var i=0; i<data["jokes"].length; i++){
-        table_body += "<tr><td>"+data["jokes"][i]["id"]+"</td><td><a href='#' onclick='show_comment("+data["jokes"][i]["id"]+")'>"+data["jokes"][i]["title"]+"</a></td><td>"+data["jokes"][i]["content"]+"</td><td><a href='#' onclick='set_joke_status("+data["jokes"][i]["id"]+","+joke_status_mapping[status]+","+current_page+")'>"+joke_operate_mapping[status]+"</a></td></tr>";
+        table_body += "<tr><td>"+data["jokes"][i]["id"]+"</td><td><a href='#' onclick='show_comment("+data["jokes"][i]["id"]+")'>"+data["jokes"][i]["title"]+"</a></td><td style=\"WORD-WRAP: break-word\">"+data["jokes"][i]["content"]+"</td><td><a href='#' onclick='set_joke_status("+data["jokes"][i]["id"]+","+joke_status_mapping[status]+","+current_page+")'>"+joke_operate_mapping[status]+"</a></td></tr>";
     }
     document.getElementById('result_body').innerHTML = table_body;
     document.getElementById('page-title').innerHTML = status==1?"<span class=\"pull-right\">审核通过</span>笑话管理":"<span class=\"pull-right\">审核拒绝</span>笑话管理";

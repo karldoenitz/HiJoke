@@ -25,8 +25,14 @@ bool Register::user_register(std::string username, std::string password) {
 void RegisterHandler::main(std::string url) {
     std::string username = request().post("username");
     std::string password = request().post("password");
-    Register *registerUser = new Register();
     cppcms::json::value json_result;
+    if (username.length()<1||password.length()<1){
+        json_result["result"] = false;
+        json_result["reason"] = "注册失败，请输入用户名或密码";
+        response_as_json(json_result);
+        return;
+    }
+    Register *registerUser = new Register();
     bool result = registerUser->user_register(username, password);
     if (result){
         json_result["result"] = true;
