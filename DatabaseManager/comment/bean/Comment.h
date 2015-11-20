@@ -6,6 +6,7 @@
 #define HIJOKE_COMMENT_H
 
 #include <iostream>
+#include <memory>
 #include <string.h>
 #include "../../user/bean/User.h"
 #include "../../joke/bean/Joke.h"
