@@ -11,6 +11,10 @@ compile the views: run the command "./start.sh views"
 compile the projection: run the command "./start.sh compile"  
 run the projection: run the command "./start.sh run"
 
+## the iOS client
+this projection is a web server, this projection is an iOS client.  
+<a href="https://github.com/karldoenitz/HiJokeIOSClient">iOS client</a>
+
 ## documentation
 uri            | method |                         params                     | response |            summary             |
 ---------------|--------|----------------------------------------------------|----------|--------------------------------|
