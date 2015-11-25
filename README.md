@@ -4,6 +4,7 @@ A web server writen by cpp
 ## dependent 
 Cppcms  
 Cppdb  
+libcurl  
 boost
 
 ## compile and run

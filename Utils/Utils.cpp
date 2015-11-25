@@ -9,3 +9,11 @@ std::string Utils::uuid() {
     std::string uuid = boost::lexical_cast<std::string>(uuid_boost);
     return uuid;
 }
+
+int Utils::send_message(std::string phone, std::string message) {
+    /**
+     * use HttpClient class to operate the http response, get sms' result and use xml parser to parse it.
+     * I have not written the codes.
+     */
+    return 1;
+}
