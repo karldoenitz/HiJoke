@@ -18,7 +18,7 @@ static size_t WriteMemoryCallback(char *contents, size_t size, size_t nmemb, str
 }
 
 
-char* HttpClient::get_http_response(char *url) {
+char* HttpClient::get_http_response(const char *url) {
     CURL *curl;
     CURLcode res;
     this->memoryStruct = new MemoryStruct();

@@ -11,6 +11,7 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/lexical_cast.hpp>
 #include "HttpClient.h"
+#include "../settings.h"
 
 class Utils {
 public:

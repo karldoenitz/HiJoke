@@ -29,7 +29,7 @@ class HttpClient {
 private:
     MemoryStruct *memoryStruct;
 public:
-    char *get_http_response(char *url);
+    char *get_http_response(const char *url);
     ~HttpClient(){
         delete this->memoryStruct;
     }
