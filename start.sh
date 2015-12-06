@@ -4,6 +4,7 @@ if [ $1 = "compile" ]; then
     echo "---start compile---"
     c++ main.cpp settings.cpp \
     Utils/Utils.cpp \
+    Utils/HttpClient.cpp \
     DatabaseManager/DatabaseOperator.cpp \
     DatabaseManager/joke/bean/Joke.cpp \
     DatabaseManager/joke/manager/JokeManager.cpp \
@@ -19,7 +20,7 @@ if [ $1 = "compile" ]; then
     Application/comment/CommentHandler.cpp \
     Application/staticserver/StaticServer.cpp \
     Templates/views.cpp \
-    -o main.o -lcppcms -lcppdb -lbooster -std=c++11
+    -o main.o -lcppcms -lcppdb -lbooster -lcurl -std=c++11
     echo "---compile success---"
 elif [ $1 = "views" ]; then
     echo "---start compile views---"
@@ -39,6 +40,7 @@ else
     echo "---start compile---"
     c++ main.cpp settings.cpp \
     Utils/Utils.cpp \
+    Utils/HttpClient.cpp \
     DatabaseManager/DatabaseOperator.cpp \
     DatabaseManager/joke/bean/Joke.cpp \
     DatabaseManager/joke/manager/JokeManager.cpp \
@@ -54,7 +56,7 @@ else
     Application/comment/CommentHandler.cpp \
     Application/staticserver/StaticServer.cpp \
     Templates/views.cpp \
-    -o main.o -lcppcms -lcppdb -lbooster -std=c++11
+    -o main.o -lcppcms -lcppdb -lbooster -lcurl -std=c++11
     echo "---compile success---"
     echo "---run server---"
     ./main.o -c config.js
