@@ -32,5 +32,8 @@
     },
     "localization": {
         "locales" : [ "en_US.UTF-8" ]
+    },
+    "logging" : {
+        "level" : "debug"
     }
 }

@@ -62,6 +62,7 @@ void JokeHandler::main(std::string url) {
         json_result["jokes"][i] = json_joke;
     }
     response_as_json(json_result);
+    BOOSTER_DEBUG("HiJoke") << json_result;
     delete databaseOperator;
 }
 

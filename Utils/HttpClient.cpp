@@ -8,21 +8,15 @@
 static size_t WriteMemoryCallback(char *contents, size_t size, size_t nmemb, struct MemoryStruct *userp)
 {
     size_t realsize = size * nmemb;
-    userp->memory = contents;
-    if(userp->memory == NULL) {
-        /* out of memory! */
-        printf("not enough memory (realloc returned NULL)\n");
-        return 0;
-    }
+    userp->memory.append(contents);
     return realsize;
 }
 
 
-char* HttpClient::get_http_response(const char *url) {
+std::string HttpClient::get_http_response(const char *url) {
     CURL *curl;
     CURLcode res;
     this->memoryStruct = new MemoryStruct();
-    memoryStruct->memory = new char[200];
     curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
     if(curl) {

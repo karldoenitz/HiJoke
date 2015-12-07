@@ -17,11 +17,8 @@ using namespace std;
 
 
 struct MemoryStruct {
-    char *memory;
+    std::string memory;
     size_t size;
-    ~MemoryStruct(){
-        delete this->memory;
-    }
 };
 
 
@@ -29,7 +26,7 @@ class HttpClient {
 private:
     MemoryStruct *memoryStruct;
 public:
-    char *get_http_response(const char *url);
+    std::string get_http_response(const char *url);
     ~HttpClient(){
         delete this->memoryStruct;
     }

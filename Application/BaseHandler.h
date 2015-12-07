@@ -5,6 +5,7 @@
 #ifndef HIJOKE_BASEHANDLER_H
 #define HIJOKE_BASEHANDLER_H
 
+#include <booster/log.h>
 #include <cppcms/application.h>
 #include <cppcms/applications_pool.h>
 #include <cppcms/http_cookie.h>
