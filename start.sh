@@ -30,7 +30,7 @@ elif [ $1 = "views" ]; then
     echo "---compile success---"
 elif [ $1 = "run" ]; then
     echo "---run server---"
-    ./main.o -c config.js
+    ./main.o -c config.json
 else
     echo "---start compile views---"
     cd Templates
@@ -59,5 +59,5 @@ else
     -o main.o -lcppcms -lcppdb -lbooster -lcurl -std=c++11
     echo "---compile success---"
     echo "---run server---"
-    ./main.o -c config.js
+    ./main.o -c config.json
 fi
