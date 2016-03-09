@@ -6,6 +6,7 @@
 #define TESTCPPDB_USERMANAGER_H
 
 #include <memory>
+#include <vector>
 #include <cppdb/frontend.h>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
