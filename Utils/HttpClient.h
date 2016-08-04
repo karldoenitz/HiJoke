@@ -26,6 +26,11 @@ class HttpClient {
 private:
     MemoryStruct *memoryStruct;
 public:
+    /**
+     * @brief http client
+     * @param url: http request url
+     * @return http response, std::string type
+     */
     std::string get_http_response(const char *url);
     ~HttpClient(){
         delete this->memoryStruct;

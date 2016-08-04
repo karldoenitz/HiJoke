@@ -15,7 +15,19 @@
 
 class Utils {
 public:
+    /**
+     * generate uuid
+     * @brief uuid
+     * @return: uuid std::string
+     */
     std::string uuid();
+    /**
+     * send message to phone with define number
+     * @brief send message
+     * @param phone: phone number
+     * @param message: message content
+     * @return: an integer
+     */
     int send_message(std::string phone, std::string message);
 };
 

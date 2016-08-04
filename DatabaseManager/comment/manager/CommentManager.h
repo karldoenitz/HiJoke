@@ -19,7 +19,19 @@ private:
     cppdb::session sql_session;
 public:
     CommentManager();
+    /**
+     * write comment
+     * @param joke_id: joke id
+     * @param usercode: user code
+     * @param comment: comment
+     * @return true or false
+     */
     bool write_comment(int joke_id, std::string usercode, std::string comment);
+    /**
+     * get comments by joke's id
+     * @param joke_id: joke's id
+     * @return an std::shared_ptr point to a vector which contain some std::shared_ptr point to Comment object
+     */
     std::shared_ptr<std::vector<std::shared_ptr<Comment>>> get_comment_vector(int joke_id);
 };
 

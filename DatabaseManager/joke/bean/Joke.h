@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string.h>
 
+/**
+ * Joke bean
+ */
 class Joke {
 private:
     int id;

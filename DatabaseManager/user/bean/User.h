@@ -8,7 +8,9 @@
 #include <iostream>
 #include <string.h>
 
-
+/**
+ * User bean
+ */
 class User {
 private:
     std::string username;

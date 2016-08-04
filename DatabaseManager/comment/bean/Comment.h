@@ -11,6 +11,9 @@
 #include "../../user/bean/User.h"
 #include "../../joke/bean/Joke.h"
 
+/**
+ * Comment bean
+ */
 class Comment {
 private:
     int id;

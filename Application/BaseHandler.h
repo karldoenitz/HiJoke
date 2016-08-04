@@ -28,12 +28,43 @@ using namespace cppcms::http;
 class BaseHandler : public cppcms::application {
 public:
     BaseHandler(cppcms::service &srv) : cppcms::application(srv){};
+    /**
+     * response as json
+     * @param json: response json
+     */
     void response_as_json(cppcms::json::value &json);
+    /**
+     * response as static
+     * @param f: static file stream
+     */
     void response_as_static(std::ifstream &f);
+    /**
+     * response as 404
+     */
     void response_as_404();
+    /**
+     * set cookie
+     * @param key: cookie's key
+     * @param value: cookie's value
+     */
     void set_cookie(std::string key, std::string value);
+    /**
+     * get cookie
+     * @param key: cookie's key
+     * @return cookie's value
+     */
     std::string get_cookie(std::string key);
+    /**
+     * set session
+     * @param key: session's key
+     * @param value: session's value
+     */
     void set_session(std::string key, std::string value);
+    /**
+     * get session
+     * @param key: session's key
+     * @return session's value
+     */
     std::string get_session(std::string key);
 };
 
