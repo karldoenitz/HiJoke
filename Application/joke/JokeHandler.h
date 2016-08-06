@@ -9,6 +9,12 @@
 
 class WriteJoke {
 public:
+    /**
+     * @brief write joke
+     * @param title: joke's title
+     * @param content: joke's content
+     * @return true or false
+     */
     bool write_joke(std::string title, std::string content);
 };
 

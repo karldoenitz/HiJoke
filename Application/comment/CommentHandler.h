@@ -9,6 +9,13 @@
 
 class WriteComment {
 public:
+    /**
+     * @brief write comment to database
+     * @param joke_id: joke id
+     * @param usercode: user's code
+     * @param comment: comment
+     * @return true or false
+     */
     bool write_comment(int joke_id, std::string usercode, std::string comment);
 };
 
@@ -20,6 +27,11 @@ public:
 
 class GetComment {
 public:
+    /**
+     * @brief get comment from database
+     * @param joke_id: joke's id
+     * @return cppcms json data
+     */
     cppcms::json::value get_comment(int joke_id);
 };
 
