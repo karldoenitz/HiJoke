@@ -10,6 +10,13 @@
 
 class Login {
 public:
+    /**
+     * @brief user login
+     * @param username: user's name
+     * @param password: user's password
+     * @param status: user's status
+     * @return login result
+     */
     std::string user_login(std::string username, std::string password, int status);
 };
 
@@ -39,6 +46,13 @@ public:
 
 class GetUser {
 public:
+    /**
+     * @brief get user with status
+     * @param start: start index
+     * @param length: end index
+     * @param status: user's status
+     * @return cppcms json
+     */
     cppcms::json::value get_users(int start, int length, int status);
 };
 
