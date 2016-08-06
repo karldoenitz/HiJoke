@@ -9,6 +9,12 @@
 
 class Register {
 public:
+    /**
+     * @brief register
+     * @param username: user's name
+     * @param password: user's password
+     * @return true or false
+     */
     bool user_register(std::string username, std::string password);
 };
 

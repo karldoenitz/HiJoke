@@ -12,6 +12,10 @@ public:
     StaticServer(cppcms::service &srv) : BaseHandler(srv){
         dispatcher().assign("/(.*)", &StaticServer::serve_file, this, 1);
     };
+    /**
+     * @brief serve file
+     * @param file_name: file's name
+     */
     void serve_file(std::string file_name);
 };
 
