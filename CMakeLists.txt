@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.3)
 project(HiJoke)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lcppdb -lcppcms -lbooster -lcurl")
+#include_directories(SYSTEM /usr/local/include)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lcppcms -lcppdb -lbooster -lcurl")
+
+link_directories(/usr/local/lib)
 
 set(SOURCE_FILES
         Application/comment/CommentHandler.cpp
@@ -34,7 +38,7 @@ set(SOURCE_FILES
         DatabaseManager/DatabaseOperator.h
         Templates/content.h
         Templates/views.cpp
-#    TestCase/test.cpp
+        #    TestCase/test.cpp
         Utils/Utils.cpp
         Utils/Utils.h
         main.cpp
@@ -44,3 +48,4 @@ set(SOURCE_FILES
         Utils/HttpClient.h)
 
 add_executable(HiJoke ${SOURCE_FILES})
+target_link_libraries(HiJoke curl cppcms cppdb booster)
