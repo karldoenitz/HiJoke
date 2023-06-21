@@ -12,6 +12,12 @@ compile the views: run the command "./start.sh views"
 compile the projection: run the command "./start.sh compile"  
 run the projection: run the command "./start.sh run"
 
+### build and debug in docker
+Use `steeze/cppcms:latest` to build this project.  
+First, run `docker pull steeze/cppcms:latest` to download the image.  
+Then run `docker run -itd --name {container-name} -v {host path}:{container path} -p 20022:22 -p 28888:8888  -d steeze/cppcms:latest` to create a container.  
+Use `Clion Remote Debug` to build and debug this project in docker.
+
 ## the iOS client
 this projection is a web server, this projection is an iOS client.  
 <a href="https://github.com/karldoenitz/HiJokeIOSClient">iOS client</a>
